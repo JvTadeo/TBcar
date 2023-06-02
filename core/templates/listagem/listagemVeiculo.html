@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    listaVeiculo
+{% endblock %}
+{% block main %}
+<div class="">
+    <h3 class="cadastro">Lista de Veiculos</h3>
+    <br>
+    <div class="list-group list-group-horizontal position-relative overflow-auto w-75">
+    {% for i in dados %}
+        <form class="user-card">
+            <div class="card" style="width: 18rem;">            
+                {% if i.foto%}
+                    <img class="card-img-top" src="{{i.foto.url}}">
+                {% else %}
+                    <img class="card-img-top" src="{% static 'img/icon_profile.png' %}">
+                {% endif %}
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1">Placa</span>
+                        </div>
+                        <input value="{{i.placa}}" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">                    
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1">Cor</span>
+                        </div>
+                        {% if i.cor %} 
+                        <input value="{{i.cor}}" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        {% else %}
+                        <input value="" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        {% endif %}
+                    </div>                    
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon1">Ano</span>
+                        </div>
+                        {% if i.ano %} 
+                        <input value="{{i.ano}}" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        {% else %}
+                        <input value="" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        {% endif %}
+                    </div>
+                    <a class="btn btn-primary" href="{% url 'url_altera_veiculo' i.id %}">Editar</a>
+                    <a href="{% url 'url_excluir_veiculo' i.id %}">Excluir</a>                
+                </div>
+            </div>            
+        </form>
+        {% endfor %}
+    </div>
+    <br>
+        <button onclick="window.location.href='/'">Voltar</button>
+</div>
+{% endblock %}

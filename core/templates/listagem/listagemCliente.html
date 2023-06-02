@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    listClient
+{% endblock %}
+{% block main %}
+    {% for i in dados %}
+    <li class="list-group-item">
+        <div class="card" style="width: 18rem;">
+            {% if i.foto %}
+                <img src="{{i.foto.url}}" class="card-img-top" alt="...">
+            {% else %}
+                <img src="{% static 'img/icon_profile.png' %}">
+            {% endif %}
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Nome: {{i.nome}}</li>
+              <li class="list-group-item">Endereço: {{i.endereco}}</li>
+              <li class="list-group-item">Complemento: {{i.complemento}}</li>
+              <li class="list-group-item">Bairro: {{i.bairro}}</li>
+              <li class="list-group-item">Cidade: {{i.cidade}}</li>
+              <li class="list-group-item">Telefone: {{i.fone}}</li>
+              <li class="list-group-item">E-mail: {{i.email}}</li>
+            </ul>
+            <div class="card-body">
+              <a class="btn btn-primary" href="{% url 'url_altera_cliente' i.id %}" >Editar</a>
+              <a class="btn btn-danger" href="{% url 'url_excluir_cliente' i.id %}">Excluir</a>
+            </div>                              
+    {% endfor %}
+    </li>
+        <button class='btn btn-danger' onclick="window.location.href='/'">Voltar</button>
+</div>
+{% endblock %}

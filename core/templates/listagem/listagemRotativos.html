@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    listaRotativos
+{% endblock %}
+{% block main %}
+<div class="">
+    <h1>Lista de Rotativos</h1>
+    <br>
+    {% for i in dados %}
+        <form class="user-card">
+            <label>Veiculos</label>
+            <input value="{{i.veiculo_id}}" disabled/>
+
+            <label>Preço Tabela</label>
+            <input value="{{i.tabela_id}}" disabled/>
+            
+            <label>Entrada</label>
+            <input value="{{i.entrada}}" disabled/>
+
+            <label>Saida</label>
+            <input value="{{i.saida}}" disabled/>
+
+            <label>Total</label>
+            <input value="R${{i.total}}" disabled/>
+
+            <label>Pago</label>
+            <input value="{{i.pago}}" disabled/>
+
+            <label>Observações</label>
+            <input value="{{i.observacoes}}" disabled/>
+
+            <a href="{% url 'url_alterar_rotativo' i.id %}">Editar</a>
+            <a href="{% url 'url_excluir_rotativo' i.id %}">Excluir</a>
+        </form>
+        {% endfor %}
+    <br>
+        <button onclick="window.location.href='/'">Voltar</button>
+</div>
+{% endblock %}

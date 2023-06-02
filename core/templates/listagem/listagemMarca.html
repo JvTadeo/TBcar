@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Lista de Marca
+{% endblock %}
+{% block main %}
+<div class="">
+    <h3 class="cadastro">Lista de Tabelas</h3>
+    <br>
+    {% for i in dados %}
+        <form class="user-card">
+            <label>Marca</label>
+            <input value="{{i.marca}}" disabled/>
+
+            <label class="image-container">
+                {% if i.logo%}
+                    <img src="{{i.logo.url}}">
+                {% else %}
+                    <img src="{% static 'img/marca_icon.png' %}">
+                {% endif %}
+            </label>
+
+            <label>URL</label>
+            {% if i.url %} 
+                <input value="{{i.url}}" disabled/>
+            {% else %}
+                <input value="" disabled/>
+            {% endif %}
+
+            <a href="{% url 'url_altera_marca' i.id %}">Editar</a>
+            <a href="{% url 'url_excluir_marca' i.id %}">Excluir</a>
+        </form>
+        {% endfor %}
+    <br>        
+        <button onclick="window.location.href='/'">Voltar</button>
+</div>
+{% endblock %}
